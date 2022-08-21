@@ -1,0 +1,28 @@
+<div xmlns:th="http://www.thymeleaf.org">
+   <main th:object="${order}">
+       <hr>
+       <div class="panel panel-primary">
+           <div class="panel-heading">ORDER LINES</div>
+           <table class="table table-danger border">
+           <thead>
+              <tr>
+                 <th>Id</th>
+                 <th>Name</th>
+                 <th>Price</th>
+                 <th>Quantity</th>
+                 <th>Amount</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr  ng-repeat="order in abc">
+                 <td>{{order.id}}</td>
+                 <td>{{order.account.username}}</td>
+                 <td>{{order.price}}</td>
+                 <td>{{order.quantity}}</td>
+                 <!-- <td>{{order.}}</td> -->
+              </tr>
+           </tbody>
+        </table>
+         </div>
+   </main>
+</div>

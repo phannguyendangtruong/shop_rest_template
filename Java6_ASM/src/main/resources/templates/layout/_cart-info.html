@@ -1,0 +1,12 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="panel panel-primary">
+        <div class="panel-body text-center border">
+            <a class="glyphicon glyphicon-shopping-cart" style="font-size: 25px; color : red;">
+                <a th:href="@{/cart/view}" class="text-decoration-none">
+                    {{cart.count}} items x ${{cart.amount | number :2}}
+                </a>
+
+            </a>
+        </div>
+    </div>
+</div>

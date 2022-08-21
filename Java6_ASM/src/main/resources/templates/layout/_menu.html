@@ -1,0 +1,52 @@
+
+ <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+
+      <h1 class="logo me-auto me-lg-0"><a href="index.html">Degrey<span></span></a></h1>
+  
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active"  th:href="@{/home}">Home</a></li>
+          <li><a class="nav-link scrollto" th:href="@{/product/list}">Product</a></li>
+          
+          <li class="dropdown"><a href="#"><span>Category</span> <i class="bi bi-chevron-down"></i></a>
+            <ul >
+              <li th:each="c:${cates}"><a   th:href="@{|/product/list/${c.id}|}"> [[${c.name}]]</a></li>             
+            </ul>
+          </li>
+          <th:block th:if ="${#request.remoteUser} == null">
+          <li><a class="nav-link scrollto"  th:href="@{/security/login/form}">Login</a></li>
+           <li><a class="nav-link scrollto" th:href="@{/order/list}">Order</a></li>
+          </th:block>
+         <th:block th:if ="${#request.remoteUser}">
+          <li><a class="nav-link scrollto" th:href="@{/order/list}">Order</a></li>
+          <li><a class="nav-link scrollto " th:href="@{/security/logoff}">Sign out</a></li>
+          
+          <li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}">
+            <a class="nav-link scrollto" th:href="@{/admin/home/index}">Admin</a></li>
+         </th:block>
+         <th:block th:unless="${#request.remoteUser}">
+         </th:block>
+        </ul>
+        <ul th:if="${#request.remoteUser}" >
+          <li><a href="#">Welcome {{$auth.user.fullname}}</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <a href="/cart/view" class="get-started-btn scrollto">Cart: {{cart.count}} </a>
+
+    </div>
+  </header><!-- End Header -->
+   <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h2></h2>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero -->

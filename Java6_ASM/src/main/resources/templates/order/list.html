@@ -1,0 +1,45 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+   <main class="container">
+       <div class="panel panel-primary h-100 mt-5">
+        <form action="/order/search" method="post">
+         <input class="form-control w-75 " name="username"> <button class="btn btn-danger bt" type="submit">Tra cứu</button>
+        </form>
+         <style>
+            .bt{
+               position: relative;
+               bottom : 35px;
+               left : 970px;
+               font-size : 16px;
+            }
+            input{
+               height : 35px;
+            }
+         </style>
+           <div class="panel-heading mt-5">YOUR ORDERS PURCHASED</div>
+           <table class="table">
+           <thead>
+              <tr>
+                 <th>No.</th>
+                 <th>Order No.</th>
+                 <th>Order Date</th>
+                 <th>Shipping Address</th>
+                 <th>Check</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr th:each="order, state: ${orders}">
+                 <td>[[${state.index}]]</td>
+                 <td>[[${order.id}]]</td>
+                 <td>[[${order.createDate}]]</td>
+                 <td>[[${order.address}]]</td>
+                 <td>
+                    <a th:href="@{|/order/detail/${order.id}|}" class="btn btn-default">
+                     <i class="bi bi-search"></i>
+                    </a>
+                 </td>
+              </tr>
+           </tbody>
+        </table>
+         </div>
+   </main>
+</div>

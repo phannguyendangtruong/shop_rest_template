@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+   <main>
+      <section class="py-5" th:object="${item}">
+         <div class="container px-4 px-lg-5 my-5">
+             <div class="row gx-4 gx-lg-5 align-items-center">
+                 <div class="col-md-6">
+                    <img class="card-img-top mb-5 mb-md-0" th:src="@{|/access/images/*{image}|}" style="width:250px;height:300px; margin-left : 200px;"/></div>
+                 <div class="col-md-6">
+                     <div class="small mb-1" th:text="*{category.name}" style="font-size : 15px;"""></div>
+                     <h1 class="display-5 fw-bolder"th:text="*{name}"></h1>
+                     <div class="fs-5 mb-5">
+                         <!-- <span class="text-decoration-line-through">$45.00</span> -->
+                         <span style="font-size : 15px;">$[[*{price}]]</span>
+                     </div>
+                     <p class="lead"></p>
+                     <div class="d-flex">
+                         <input class="form-control text-center me-3" id="inputQuantity" type="num"  ng-model="it" value="1"style="max-width: 3rem" />
+                         <button onclick="them()" th:attr="ng-click=@{|cart.add(*{id},it)|}" class="btn btn-outline-dark flex-shrink-0" type="button">
+                             <i class="bi-cart-fill me-1"  ></i>
+                             Add to cart
+                         </button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+  
+
+     <section class="py-5">
+      <div class="container px-4 px-lg-5 ">
+          <h2 class="fw-bolder mb-4">Related products</h2>
+          <main class="row">
+            <section class="section section-collection col-12">
+                <div class="blocklayout">
+                    <div class="clearfix content-product-list row"
+                        style="margin-top: 0px">
+                        <div class="col-md-3 col-sm-6 col-xs-6 pro-loop"
+                            th:each="p:${item.category.products}">
+                            <div class="product-block" data-anmation="2">
+                                <div class="product-img">
+                                    <a class="image-resize"> <picture>
+                                        <source
+                                            data-srcset="https://icdn.dantri.com.vn/thumb_w/640/2017/1-1510967806416.jpg" />
+                                        <img th:src="@{|/access/images/${p.image}|}" class="lazyload"
+                                            width="200px" height="200px" loading="lazy" /> </picture> <picture>
+                                        <source
+                                            data-srcset="https://icdn.dantri.com.vn/thumb_w/640/2017/1-1510967806416.jpg" />
+                                        <img th:src="@{|/access/images/${p.image}|}" class="lazyload"
+                                            width="200px" height="200px" loading="lazy" /> </picture>
+                                    </a>
+                                    <div class="button-add xct">
+                                        <a class="action lang button "
+                                            th:href="@{|/product/detail/${p.id}|}">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                                <div class="sub">
+                                    <a class="product-block-title font-oswald text-uppercase"
+                                        href="/products/crayon-wolf-tee" title="CRAYON WOLF TEE"> <br>[[${p.name}]]
+                                    </a>
+                                    <div class="box-pro-prices">
+                                        <p class="pro-price text-center	">[[${p.price}]]₫</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+            <script>
+                function them(){
+                   alert("Thêm vào giỏ hàng thành công");
+                }
+              </script>
+        </main>
+      </div>
+  </section>
+   </main>
+ 
+</body>
+</html>

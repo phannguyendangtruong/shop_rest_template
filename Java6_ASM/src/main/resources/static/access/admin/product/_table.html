@@ -1,0 +1,54 @@
+<div class="panel panel-default">
+    <div class="panel-heading">PRODUCT LIST</div>
+    <table class="table table-condensed">
+        <thead class="bg-success" style="font-variant: smaill-caps;">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Available?</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in pager.items">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price | number:2}}</td>
+                <td>{{item.createDate | date :'dd-MM-yyyy'}}</td>
+                <td>{{item.image}}</td>
+                <td>{{item.category.name}}</td>
+                <td>{{item.available?'Yes':'No'}}</td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <button class="btn btn-warning " ng-click="edit(item)"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-danger " ng-click="delete(item)"><i class="bi bi-trash"></i></button>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="panel-footer text-center">
+        <button ng-click="pager.first()" class="btn btn-danger">
+            <i class="bi bi-arrow-left"></i>
+            </b>
+        </button>
+        <button ng-click="pager.prev()" class="btn btn-primary">
+            <i class="bi bi-arrow-left-short"></i>
+        <button class="btn btn-success">{{pager.page +1}} of {{pager.count}}</button>
+        <button ng-click="pager.next()" class="btn btn-primary">
+            <i class="bi bi-arrow-right-short"></i>
+
+            </b>
+        </button>
+        <button ng-click="pager.last()" class="btn btn-danger">
+            <i class="bi bi-arrow-right"></i>
+
+            </b>
+        </button>
+    </div>
+</div>

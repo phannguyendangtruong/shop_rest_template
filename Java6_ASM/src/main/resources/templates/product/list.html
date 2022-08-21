@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+	<main class="row">
+		<section class="section section-collection col-12">
+			<div class="blocklayout">
+				<div class="clearfix content-product-list row"
+					style="margin-top: 0px">
+					<div class="col-md-3 col-sm-6 col-xs-6 pro-loop"
+						th:each="p:${page.content}">
+						<div class="product-block" data-anmation="2">
+							<div class="product-img">
+								<a class="image-resize"> <picture>
+									<source
+										data-srcset="https://icdn.dantri.com.vn/thumb_w/640/2017/1-1510967806416.jpg" />
+									<img th:src="@{|/access/images/${p.image}|}" class="lazyload"
+										width="200px" height="200px" loading="lazy" /> </picture> <picture>
+									<source
+										data-srcset="https://icdn.dantri.com.vn/thumb_w/640/2017/1-1510967806416.jpg" />
+									<img th:src="@{|/access/images/${p.image}|}" class="lazyload"
+										width="200px" height="200px" loading="lazy" /> </picture>
+								</a>
+								<div class="button-add xct">
+									<a class="action lang button "
+										th:href="@{|/product/detail/${p.id}|}">Xem chi tiết</a>
+								</div>
+							</div>
+							<div class="sub">
+								<a class="product-block-title font-oswald text-uppercase"
+									href="/products/crayon-wolf-tee" title="CRAYON WOLF TEE"> <br>[[${p.name}]]
+								</a>
+								<div class="box-pro-prices">
+									<p class="pro-price text-center	">[[${p.price}]]₫</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><a class="page-link"
+					th:href="@{|/product/list/${cid}?page=0|}">First</a></li>
+				<li class="page-item"><a class="page-link"
+					th:href="@{|/product/list/${cid}?page=${page.number-1}|}">Previous</a></li>
+				<li class="page-item"><a class="page-link"
+					th:href="@{|/product/list/${cid}?page=${page.number+1}|}">Next</a></li>
+				<li class="page-item"><a class="page-link"
+					th:href="@{|/product/list/${cid}?page=${page.totalPages-1}|}">Last</a></li>
+			</ul>
+		</section>
+
+	</main>
+
+	<!--  <main class="row">
+		<div th:each="p:${items}" class="col-sm-4">
+
+			<div class="col mb-5">
+				<div class="card h-100">
+					<img class="card-img-top" th:src="@{|/access/images/${p.image}|}"
+						height="200px" />
+					<div class="card-body p-4">
+						<div class="text-center">
+							<h5 class="fw-bolder" th:text="${p.name}"></h5>
+							
+							$[[${p.price}]]
+						</div>
+					</div>
+					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+						<div class="text-center">
+							<a class="btn btn-outline-dark mt-auto"
+								th:href="@{|/product/detail/${p.id}|}">View options</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+-->
+</body>
+</html>

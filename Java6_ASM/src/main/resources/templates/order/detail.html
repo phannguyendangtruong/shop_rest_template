@@ -1,0 +1,64 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+   <main th:object="${order}">
+       <div class="panel panel-primary mt-5 pd-5">
+           <div class="panel-heading">ORDER INFORMATION</div>
+           <div class="panel-body">
+              <div class="row">
+                 <div class="form-group col-sm-4">
+                      <div>Order Number:</div>
+                      <input style="font-size : 20px;" th:field="*{id}" class="form-control" readonly>
+                  </div>
+                  <div class="form-group col-sm-4">
+                      <div>Purchaser:</div>
+                      <input style="font-size : 20px;" th:field="*{account.username}" class="form-control" readonly>
+                  </div>
+                  <div class="form-group col-sm-4">
+                      <div>Purchased Date:</div>
+                      <input style="font-size : 20px;" th:field="*{createDate}" class="form-control" readonly>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="form-group col-sm-12">
+                      <div>Shipping Address:</div>
+                      <textarea style="font-size : 20px;" th:field="*{address}" class="form-control" readonly></textarea>
+                  </div>
+               </div>
+               <div class="form-group col-sm-4">
+                  <div>Status:</div>
+                  <a th:text="${order.confirm}?'Đã xác nhận':'Chưa xác nhận'" class="form-control" style="font-size : 20px;" readonly></a>
+                  <br>
+                    <th:block th:unless="${order.confirm} == false">
+                     <form th:action="@{|/order/cancel/${order.id}|}" method="post">
+                        <button class="btn btn-danger" type="submit" style="font-size : 20px;">Hủy đơn</button>
+                     </form>
+                    </th:block>
+               </div>
+             <br>
+           </div>
+       </div>
+       <hr>
+       <div class="panel panel-primary">
+           <div class="panel-heading">ORDER LINES</div>
+           <table class="table table-danger border">
+           <thead>
+              <tr>
+                 <th>Id</th>
+                 <th>Name</th>
+                 <th>Price</th>
+                 <th>Quantity</th>
+                 <th>Amount</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr th:each="detail: *{orderDetails}" th:object="${detail}">
+                 <td>[[*{product.id}]]</td>
+                 <td>[[*{product.name}]]</td>
+                 <td>$[[*{#numbers.formatDecimal(price, 0, 'COMMA', 2, 'POINT')}]]</td>
+                 <td>[[*{quantity}]]</td>
+                 <td>$[[*{#numbers.formatDecimal(price*quantity, 0, 'COMMA', 2, 'POINT')}]]</td>
+              </tr>
+           </tbody>
+        </table>
+         </div>
+   </main>
+</div>

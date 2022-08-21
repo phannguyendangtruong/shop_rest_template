@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+
+	<main style="height: 1000px"th:fragment="shopping-cart">
+		<link href="/access/css/styles2.css" rel="stylesheet">
+		<div class="wrap cf" >
+			<h1 class="projTitle">Shopping Cart</h1>
+			<div class="cart">
+				<ul class="cartWrap">
+					<li class="items odd">
+						<div class="infoWrap" ng-repeat="item in cart.items">
+							<div class="cartSection">
+								<p class="itemNumber">#ID{{item.id}}</p>
+								<h3>{{item.name}}</h3>
+								<img src="/access/images/{{item.image}}" style="width:80px; height:80px;">
+								<p>
+									<input type="number" min="1"
+										ng-change="cart.saveToLocalStorage()" ng-model="item.qty"
+										class="qty w-25"> X ${{item.price}}
+								</p>
+							</div>
+							<div class="prodTotal cartSection float-right">
+								<p>${{item.qty*item.price | number:2}}</p>
+							</div>
+							<div class="cartSection removeWrap">
+								<a ng-click="cart.remove(item.id)" class="remove">x</a>
+
+							</div>
+
+						</div>
+					</li>
+
+					<li class="items even">
+						<div class="subtotal cf">
+							<ul>
+								<li class="totalRow"><span class="label">Subtotal</span><span
+									class="value"> ${{cart.amount | number :2}}</span></li>
+
+								<li class="totalRow"><span class="label">Shipping</span><span
+									class="value">$30</span></li>
+
+								<li class="totalRow final"><span class="label">Total</span><span
+									class="value"> ${{cart.amount +30 | number :2}}</span></li>
+									<!-- <li class="totalRow"><a href="/order/checkout" class="btn continue">Checkout</a>
+								
+								</li> -->
+
+							</ul>
+						</div>
+						<div>
+							<a ng-click="cart.clear()" class="btn btn-danger">Clear</a>
+						
+						</div>
+							<a href="/order/checkout" class="btn" style="position : relative; top : 150px; left : 320px;">Check out</a>
+			</div>
+			<script>
+				// Remove Items From Cart
+				$('a.remove').click(function() {
+					event.preventDefault();
+					$(this).parent().parent().parent().hide(400);
+
+				})
+
+				// Just for testing, show all items
+				$('a.btn.continue').click(function() {
+					$('li.items').show(400);
+				})
+			</script>
+	</main>
+</body>
+</html>

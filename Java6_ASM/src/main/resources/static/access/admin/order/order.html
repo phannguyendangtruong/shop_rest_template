@@ -1,0 +1,149 @@
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
+    <!-- <main class="container">
+        <div class="panel panel-primary h-100 mt-5">
+         <form action="/order/search" method="post">
+          <input class="form-control w-75 " name="username"> <button class="btn btn-danger bt" type="submit">Tra cứu</button>
+         </form>
+          <style>
+             .bt{
+                position: relative;
+                bottom : 35px;
+                left : 970px;
+                font-size : 16px;
+             }
+             input{
+                height : 35px;
+             }
+          </style>
+            <div class="panel-heading mt-5">YOUR ORDERS PURCHASED</div>
+            <table class="table">
+            <thead>
+               <tr>
+                  <th>No.</th>
+                  <th>Order No.</th>
+                  <th>Order Date</th>
+                  <th>Shipping Address</th>
+                  <th>Check</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr th:each="order, state: ${orders}">
+                  <td>[[${state.index}]]</td>
+                  <td>[[${order.id}]]</td>
+                  <td>[[${order.createDate}]]</td>
+                  <td>[[${order.address}]]</td>
+                  <td>
+                     <a th:href="@{|/order/detail/${order.id}|}" class="btn btn-default">
+                      <i class="bi bi-search"></i>
+                     </a>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+          </div>
+    </main> -->
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Order</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Confirm</button>
+      </li>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+           <main class="container">
+        <div class="panel panel-primary h-100 mt-5">
+         <form action="/order/search" method="post">
+          <input class="form-control w-75 " name="username"> <button class="btn btn-danger bt" type="submit">Tra cứu</button>
+         </form>
+          <style>
+             .bt{
+                position: relative;
+                bottom : 35px;
+                left : 970px;
+                font-size : 16px;
+             }
+             input{
+                height : 35px;
+             }
+          </style>
+            <div class="panel-heading mt-5">YOUR ORDERS PURCHASED</div>
+            <table class="table" ng-app="">
+            <thead>
+               <tr>
+                  <th>No.</th>
+                  <th>Username</th>
+                  <th>Order Date</th>
+                  <th>Shipping Address</th>
+                  <th>Check</th>
+                  <th>Confirm</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr ng-repeat="order in items">
+                  <td>{{order.id}}</td>
+                  <td>{{order.account.username}}</td>
+                  <td>{{order.createDate}}</td>
+                  <td>{{order.address}}</td>
+                  <td>
+                     <a ng-click="details(order.id)" class="btn btn-default">
+                      <i class="bi bi-search"></i>
+                     </a>
+                  </td>
+                  <td><button class="btn btn-primary" ng-click="confirm(order)">Xác nhận</button>
+                  <button class="btn btn-danger" ng-click="cancel(order)">Hủy</button></td>
+               </tr>
+            </tbody>
+         </table>
+          </div>
+    </main>
+      </div>
+      <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+         <div class="panel panel-primary h-100 mt-5">
+            <form action="/order/search" method="post">
+             <input class="form-control w-75 " name="username"> <button class="btn btn-danger bt" type="submit">Tra cứu</button>
+            </form>
+             <style>
+                .bt{
+                   position: relative;
+                   bottom : 35px;
+                   left : 970px;
+                   font-size : 16px;
+                }
+                input{
+                   height : 35px;
+                }
+             </style>
+               <div class="panel-heading mt-5">YOUR ORDERS PURCHASED</div>
+               <table class="table" ng-app="">
+               <thead>
+                  <tr>
+                     <th>No.</th>
+                     <th>Username</th>
+                     <th>Order Date</th>
+                     <th>Shipping Address</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr ng-repeat="order in items2">
+                     <td>{{order.id}}</td>
+                     <td>{{order.account.username}}</td>
+                     <td>{{order.createDate}}</td>
+                     <td>{{order.address}}</td>
+                     <!-- <td>
+                        <a th:href="@{|/order/detail/${order.id}|}" class="btn btn-default">
+                         <i class="bi bi-search"></i>
+                        </a>
+                     </td> -->
+                   
+                  </tr>
+               </tbody>
+            </table>
+             </div>
+      </div>
+    </div>
+ </div>
+ 
